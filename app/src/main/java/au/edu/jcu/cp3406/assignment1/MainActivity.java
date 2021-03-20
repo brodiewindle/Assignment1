@@ -35,14 +35,11 @@ public class MainActivity extends AppCompatActivity {
         // Here, a switch case can be made if there are multiple menu items
         // We only have one, so we can just handle it
         System.out.println("Settings Pressed");
-
-        Intent settingsIntent = new Intent();
-
-
-
-
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public void settingsClicked(MenuItem item) {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        startActivityForResult(settingsIntent, SettingsActivity.SETTINGS_REQUEST);
     }
 }

@@ -7,38 +7,59 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/income_category_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70sp"
         android:text="Add new income category" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:inputType="text"
-        android:id="@+id/new_income_category"/>
+        android:id="@+id/new_income_category"
+        android:autofillHints="no"
+        android:labelFor="@+id/income_category_text"
+        android:hint="@string/income_hint"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/income_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Add"
+        android:onClick="newIncomeClicked"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/expense_category_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add new expense category" />
+        android:layout_marginTop="30sp"
+        android:text="Add new expense category"
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:inputType="text"
-        android:id="@+id/new_expense_category"/>
+        android:id="@+id/new_expense_category"
+        android:autofillHints="no"
+        android:labelFor="@+id/expense_category_text"
+        android:hint="@string/expenses_hint"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/expense_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Add"
+        android:onClick="newExpenseClicked"/>
+
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40sp"
+        android:text="@string/done_button"
+        android:onClick="doneClicked"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
