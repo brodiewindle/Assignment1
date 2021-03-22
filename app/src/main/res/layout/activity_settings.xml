@@ -28,15 +28,17 @@
             android:id="@+id/new_income_category_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="70sp"
-            android:textSize="20sp"
+            android:text="@string/add_new_income_category"
             android:textColor="@color/blue"
-            android:textStyle="bold"
-            android:text="@string/add_new_income_category" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40sp"
+            android:layout_marginStart="5dp"
             android:inputType="text"
             android:id="@+id/new_income_category"
             android:autofillHints="no"
@@ -47,6 +49,7 @@
             android:id="@+id/income_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="@string/add_button"
             android:onClick="newIncomeCategoryClicked"/>
 
@@ -54,6 +57,7 @@
             android:id="@+id/new_expense_category_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="30sp"
             android:textSize="20sp"
             android:textColor="@color/blue"
@@ -64,6 +68,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40sp"
+            android:layout_marginStart="5sp"
             android:inputType="text"
             android:id="@+id/new_expense_category"
             android:autofillHints="no"
@@ -75,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_button"
+            android:layout_marginStart="5dp"
             android:onClick="newExpenseCategoryClicked"/>
 
 
@@ -83,7 +89,7 @@
             android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop="40dp"
             android:text="@string/done_button"
             android:onClick="doneClicked"/>
 

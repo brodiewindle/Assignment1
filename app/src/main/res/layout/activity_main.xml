@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -34,11 +35,12 @@
             android:id="@+id/add_new_income"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/blue"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="20sp"
             android:text="@string/new_income_entry"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,61 +48,91 @@
             android:id="@+id/income_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="no"
+            android:layout_marginStart="5dp"
             android:hint="@string/income_in_dollars"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_income" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_income"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/income_category_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Category"
+            android:layout_marginStart="5dp"
+            android:text="@string/category"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/income_amount" />
 
         <Button
             android:id="@+id/add_btn_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/blue"
+            android:onClick="newIncomeClicked"
             android:text="@string/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/income_category_text"
-            android:onClick="newIncomeClicked"/>
+            app:layout_constraintTop_toBottomOf="@id/income_category_text" />
 
 
         <TextView
             android:id="@+id/add_new_expense"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/new_expense_entry"
+            android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/blue"
-            android:text="@string/new_expense_entry"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_btn_income"
-            android:layout_marginTop="40dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/add_btn_income" />
 
         <EditText
             android:id="@+id/expense_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="no"
+            android:layout_marginStart="5dp"
             android:hint="@string/expense_in_dollars"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_expense" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_expense"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/expense_category_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Category"
+            android:layout_marginStart="5dp"
+            android:text="@string/category"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/expense_amount" />
 
         <Button
             android:id="@+id/add_btn_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/blue"
+            android:onClick="newExpenseClicked"
             android:text="@string/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expense_category_text"
-            android:onClick="newExpenseClicked"/>
+            app:layout_constraintTop_toBottomOf="@id/expense_category_text" />
 
+
+        <Button
+            android:id="@+id/see_data"
+            android:layout_width="217dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:onClick="newExpenseClicked"
+            android:text="@string/see_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expense_category_text" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

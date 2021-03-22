@@ -11,4 +11,6 @@
     <string name="new_income_entry">New Income Entry</string>
     <string name="add_new_expense_category">Add new expense category</string>
     <string name="add_new_income_category">Add new income category</string>
+    <string name="category">Category</string>
+    <string name="see_data">See Data</string>
 </resources>

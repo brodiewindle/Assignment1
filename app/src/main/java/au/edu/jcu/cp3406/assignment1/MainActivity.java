@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,28 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button incomeButton = findViewById(R.id.income_category_text);
         registerForContextMenu(incomeButton);
-
-
-        // Expandable View
-//        expandableView = findViewById(R.id.supporting_text);
-//        arrowBtn = findViewById(R.id.addBtn1);
-//        cardView = findViewById(R.id.cardView);
-//
-//        arrowBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                System.out.println("Add Button Pressed");
-//                if (expandableView.getVisibility()==View.GONE){
-//                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-//                    expandableView.setVisibility(View.VISIBLE);
-//                    arrowBtn.setBackgroundResource(R.drawable.ic_add_button);
-//                } else {
-//                    TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-//                    expandableView.setVisibility(View.GONE);
-//
-//                }
-//            }
-//        });
 
     }
 
@@ -121,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Update the new expense total
         totalExpense = totalExpense + expenseAmount;
+
         System.out.println(totalExpense);
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
     }
@@ -134,7 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Update the new income total
         totalIncome = totalIncome + incomeAmount;
+
         System.out.println(totalIncome);
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+    }
+
+    private void sendToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);  // Only need the LENGTH_LONG
+        toast.show();
     }
 }
