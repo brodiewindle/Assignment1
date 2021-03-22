@@ -7,26 +7,31 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:background="@color/cardview_dark_background"
             app:title="@string/settings"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/light_grey">
 
         <TextView
             android:id="@+id/new_income_category_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70sp"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
             android:text="@string/add_new_income_category" />
 
         <EditText
@@ -50,6 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
             android:text="@string/add_new_expense_category"
             />
 

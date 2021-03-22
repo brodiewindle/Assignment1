@@ -27,8 +27,8 @@ public class SettingsActivity extends AppCompatActivity {
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
 
         // Toast Text
-        Toast toast = Toast.makeText(this, "New Expense Category Added!", Toast.LENGTH_LONG);
-        toast.show();
+       sendToast("New Expense Category Added!");
+
     }
 
     public void newIncomeCategoryClicked(View view) {
@@ -38,11 +38,13 @@ public class SettingsActivity extends AppCompatActivity {
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
 
         // Toast text
-        Toast toast = Toast.makeText(this, "New Income Category Added!", Toast.LENGTH_LONG);
-        toast.show();
+        sendToast("New Income Category Added!");
     }
 
-//    private void sendToast(String message, )
+    private void sendToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);  // Only need the LENGTH_LONG
+        toast.show();
+    }
 
 
     public void doneClicked(View view) {
