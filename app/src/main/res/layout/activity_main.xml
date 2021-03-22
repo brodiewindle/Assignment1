@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_constraintTop_toTopOf="parent">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,103 +16,85 @@
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/page_title"
-            app:menu="@menu/main_menu"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
-            />
+            app:menu="@menu/main_menu"
+            app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="55dp"
-        >
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp">
 
 
         <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="190dp"
-            android:text="New Income Entry"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/addBtn"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/addBtn"
-            android:layout_width="30dp"
+            android:id="@+id/add_new_income"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_add_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="20sp"
+            android:text="@string/new_income_entry"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/expandableView"
+        <EditText
+            android:id="@+id/income_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:paddingBottom="24dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/income_in_dollars"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_income" />
+
+        <Button
+            android:id="@+id/income_category_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Category"
+            app:layout_constraintTop_toBottomOf="@+id/income_amount" />
+
+        <Button
+            android:id="@+id/add_btn_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@id/income_category_text"
+            android:onClick="newIncomeClicked"/>
 
 
-            <TextView
-                android:id="@+id/phoneNumber"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="(999) 345 32 45"
-                android:textColor="#000"
-                app:layout_constraintEnd_toStartOf="@+id/mailNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/add_new_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            android:text="@string/new_expense_entry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_btn_income"
+            android:layout_marginTop="40dp"/>
 
-            <TextView
-                android:id="@+id/phoneDesc"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="368dp"
-                android:text="Mobile"
-                android:textColor="#8A000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/mailDesc"
-                app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+        <EditText
+            android:id="@+id/expense_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/expense_in_dollars"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_expense" />
+
+        <Button
+            android:id="@+id/expense_category_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Category"
+            app:layout_constraintTop_toBottomOf="@+id/expense_amount" />
+
+        <Button
+            android:id="@+id/add_btn_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expense_category_text"
+            android:onClick="newExpenseClicked"/>
 
 
-            <TextView
-                android:id="@+id/mailNumber"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="228dp"
-                android:text="workemail@gmail.com"
-                android:textColor="#000"
-                app:layout_constraintBottom_toTopOf="@+id/mailDesc"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/mailDesc"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:text="Work"
-                android:textColor="#8A000000"
-                app:layout_constraintEnd_toStartOf="@+id/phoneDesc"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mailNumber" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

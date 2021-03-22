@@ -1,9 +1,10 @@
 package au.edu.jcu.cp3406.assignment1;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,34 +20,40 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void newExpenseClicked(View view) {
+    public void newExpenseCategoryClicked(View view) {
         EditText userInputExpense = findViewById(R.id.new_expense_category);
         String newExpenseCategory = userInputExpense.getText().toString();
         System.out.println(newExpenseCategory);
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
 
-        // TODO: Add Toast text
+        // Toast Text
+        Toast toast = Toast.makeText(this, "New Expense Category Added!", Toast.LENGTH_LONG);
+        toast.show();
     }
 
-    public void newIncomeClicked(View view) {
+    public void newIncomeCategoryClicked(View view) {
         EditText userInputIncome = findViewById(R.id.new_income_category);
         String newIncomeCategory = userInputIncome.getText().toString();
         System.out.println(newIncomeCategory);
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
 
-        // TODO: Add Toast text
+        // Toast text
+        Toast toast = Toast.makeText(this, "New Income Category Added!", Toast.LENGTH_LONG);
+        toast.show();
     }
 
+//    private void sendToast(String message, )
 
-//    public void doneClicked(View view) {
-//        EditText userInput = findViewById(R.id.userInput);
-//        String text = userInput.getText().toString();
-//        int speed = Integer.parseInt(text);
-//
-//        Intent intent = new Intent();
-//        intent.putExtra("speed", speed);
-//        setResult(RESULT_OK, intent);
-//        finish();
-//    }
+
+    public void doneClicked(View view) {
+        finish();
+    }
+
+    // This method is called when the user presses the back button on the device
+    @Override
+    public void onBackPressed() {
+        doneClicked(null);
+    }
+
 
 }

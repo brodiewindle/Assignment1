@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Assignment1</string>
+    <string name="app_name">My Budget Tracker</string>
     <string name="settings">Settings</string>
-    <string name="page_title">Budget</string>
     <string name="done_button">Done</string>
+    <string name="add_button">Add</string>
     <string name="income_hint">Example: New Job</string>
     <string name="expenses_hint">Example: Car Expenses</string>
+    <string name="income_in_dollars">Income in dollars</string>
+    <string name="expense_in_dollars">Expense in dollars</string>
+    <string name="new_expense_entry">New Expense Entry</string>
+    <string name="new_income_entry">New Income Entry</string>
+    <string name="add_new_expense_category">Add new expense category</string>
+    <string name="add_new_income_category">Add new income category</string>
 </resources>

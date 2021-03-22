@@ -1,64 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/income_category_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70sp"
-        android:text="Add new income category" />
-
-    <EditText
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:inputType="text"
-        android:id="@+id/new_income_category"
-        android:autofillHints="no"
-        android:labelFor="@+id/income_category_text"
-        android:hint="@string/income_hint"/>
-
-    <Button
-        android:id="@+id/income_button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:onClick="newIncomeClicked"/>
+        android:theme="@style/Theme.AppCompat.Light">
 
-    <TextView
-        android:id="@+id/expense_category_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:text="Add new expense category"
-        />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/settings"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:inputType="text"
-        android:id="@+id/new_expense_category"
-        android:autofillHints="no"
-        android:labelFor="@+id/expense_category_text"
-        android:hint="@string/expenses_hint"/>
-
-    <Button
-        android:id="@+id/expense_button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:onClick="newExpenseClicked"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_income_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70sp"
+            android:text="@string/add_new_income_category" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:inputType="text"
+            android:id="@+id/new_income_category"
+            android:autofillHints="no"
+            android:labelFor="@+id/income_category_text"
+            android:hint="@string/income_hint"/>
+
+        <Button
+            android:id="@+id/income_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_button"
+            android:onClick="newIncomeCategoryClicked"/>
+
+        <TextView
+            android:id="@+id/new_expense_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:text="@string/add_new_expense_category"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:inputType="text"
+            android:id="@+id/new_expense_category"
+            android:autofillHints="no"
+            android:labelFor="@+id/expense_category_text"
+            android:hint="@string/expenses_hint"/>
+
+        <Button
+            android:id="@+id/expense_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_button"
+            android:onClick="newExpenseCategoryClicked"/>
 
 
-    <Button
-        android:id="@+id/done_button"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40sp"
-        android:text="@string/done_button"
-        android:onClick="doneClicked"/>
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <Button
+            android:id="@+id/done_button"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40sp"
+            android:text="@string/done_button"
+            android:onClick="doneClicked"/>
+
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
