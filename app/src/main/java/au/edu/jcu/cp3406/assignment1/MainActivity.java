@@ -2,14 +2,12 @@ package au.edu.jcu.cp3406.assignment1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,20 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private double totalIncome;
-    private double totalExpense;
+    private int totalIncome;
+    private int totalExpense;
 
-    public ArrayList<String> incomeCategories;
-    public ArrayList<String> expenseCategories;
+    private ArrayList<String> incomeCategories;
+    private ArrayList<String> expenseCategories;
+    private final ArrayList<Integer> incomeAmounts = new ArrayList<>();
+    private final ArrayList<Integer> expenseAmounts = new ArrayList<>();
 
     Spinner incomeSpinner;
     Spinner expenseSpinner;
@@ -97,17 +93,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivityForResult(settingsIntent, SettingsActivity.SETTINGS_REQUEST);
     }
 
+
     // Add a new expense entry
     public void newExpenseClicked(View view) {
         EditText userInputExpense = findViewById(R.id.expense_amount);
         String newExpenseAmount = userInputExpense.getText().toString();
         System.out.println(newExpenseAmount);
-        double expenseAmount = Double.parseDouble(newExpenseAmount);
+        int expenseAmount = Integer.parseInt(newExpenseAmount);
 
         // Update the new expense total
         totalExpense = totalExpense + expenseAmount;
 
-        System.out.println(totalExpense);
+        // get the category it has been entered into
+        // assign the new value into the correct position
+        // update the array
+        String expenseCategorySelected = expenseSpinner.getSelectedItem().toString();
+        int index = expenseCategories.indexOf(expenseCategorySelected);
+        expenseAmounts.add(index, totalExpense);
+
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
     }
 
@@ -116,14 +119,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         EditText userInputIncome = findViewById(R.id.income_amount);
         String newIncomeAmount = userInputIncome.getText().toString();
         System.out.println(newIncomeAmount);
-        double incomeAmount = Double.parseDouble(newIncomeAmount);
+        int incomeAmount = Integer.parseInt(newIncomeAmount);
 
         // Update the new income total
         totalIncome = totalIncome + incomeAmount;
 
-        System.out.println(totalIncome);
+        String incomeCategorySelected = incomeSpinner.getSelectedItem().toString();
+        int index = incomeCategories.indexOf(incomeCategorySelected);
+        incomeAmounts.add(index, totalIncome);
+
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
     }
+
 
     private void sendToast(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);  // Only need the LENGTH_LONG
@@ -132,10 +139,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void seeDataClicked(View view) {
 
-
         Intent dataIntent = new Intent(this, DisplayDataActivity.class);
         dataIntent.putStringArrayListExtra("incomeCategory", incomeCategories);
         dataIntent.putStringArrayListExtra("expenseCategory", expenseCategories);
+        dataIntent.putIntegerArrayListExtra("incomeAmount", incomeAmounts);
+        dataIntent.putIntegerArrayListExtra("expenseAmount", expenseAmounts);
         startActivityForResult(dataIntent, DisplayDataActivity.DATA_REQUEST);
     }
 
@@ -151,9 +159,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String newExpenseCategory = data.getStringExtra("expenseCategory");
 
                 incomeCategories.add(newIncomeCategory);
+                incomeAmounts.add(0);
                 incomeAdapter.notifyDataSetChanged();
 
                 expenseCategories.add(newExpenseCategory);
+                expenseAmounts.add(0);
                 expenseAdapter.notifyDataSetChanged();
 
             }

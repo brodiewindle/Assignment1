@@ -30,6 +30,7 @@
             android:id="@+id/income_categories_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:minLines="1"
             android:maxLines="10"
             android:ellipsize="end"
@@ -42,6 +43,10 @@
             android:id="@+id/income_amount_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minLines="1"
+            android:maxLines="10"
+            android:ellipsize="end"
+            android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
             app:layout_constraintTop_toTopOf="@+id/income_categories_text" />
@@ -50,6 +55,7 @@
             android:id="@+id/expense_categories_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:minLines="1"
             android:maxLines="10"
             android:ellipsize="end"
@@ -62,7 +68,12 @@
             android:id="@+id/expense_amount_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:minLines="1"
+            android:maxLines="10"
+            android:ellipsize="end"
+            android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
             app:layout_constraintTop_toTopOf="@+id/expense_categories_text" />
 
 

@@ -14,7 +14,9 @@ public class DisplayDataActivity extends AppCompatActivity {
     public static int DATA_REQUEST = 2;
     Toolbar dataToolbar;
     TextView incomeCategoryText;
-
+    TextView expenseCategoryText;
+    TextView incomeAmountText;
+    TextView expenseAmountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +34,28 @@ public class DisplayDataActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ArrayList<String> incomeCategories = intent.getStringArrayListExtra("incomeCategory");
         ArrayList<String> expenseCategories = intent.getStringArrayListExtra("expenseCategory");
+        ArrayList<Integer> incomeAmounts = intent.getIntegerArrayListExtra("incomeAmount");
+        ArrayList<Integer> expenseAmounts = intent.getIntegerArrayListExtra("expenseAmount");
 
         String incomeCategoryInput = "";
         String incomeAmountInput = "";
         incomeCategoryText = findViewById(R.id.income_categories_text);
+        incomeAmountText = findViewById(R.id.income_amount_text);
         for (int i = 0; i < incomeCategories.size(); i++) {
             incomeCategoryInput = incomeCategoryInput + "\n" + incomeCategories.get(i);
-            // TODO: Income Amount
+            incomeAmountInput = incomeAmountInput + "\n" + incomeAmounts.get(i);
             incomeCategoryText.setText(incomeCategoryInput);
+            incomeAmountText.setText(incomeAmountInput);
         }
         String expenseCategoryInput = "";
         String expenseAmountInput = "";
-        incomeCategoryText = findViewById(R.id.expense_categories_text);
+        expenseCategoryText = findViewById(R.id.expense_categories_text);
+        expenseAmountText = findViewById(R.id.expense_amount_text);
         for (int i = 0; i < incomeCategories.size(); i++) {
             expenseCategoryInput = expenseCategoryInput + "\n" + expenseCategories.get(i);
-            // TODO: Income Amount
-            incomeCategoryText.setText(expenseCategoryInput);
+            expenseAmountInput = expenseAmountInput + "\n" + expenseAmounts.get(i);
+            expenseCategoryText.setText(expenseCategoryInput);
+            expenseAmountText.setText(expenseAmountInput);
         }
         
     }
