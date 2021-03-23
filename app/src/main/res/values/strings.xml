@@ -13,4 +13,20 @@
     <string name="add_new_income_category">Add new income category</string>
     <string name="category">Category</string>
     <string name="see_data">See Data</string>
+    <string name="data_activity_title">Data</string>
+
+    <string-array name="income_categories">
+        <item>Income Category 1</item>
+        <item>Income Category 2</item>
+        <item>Income Category 3</item>
+        <item>Income Category 4</item>
+    </string-array>
+
+    <string-array name="expense_categories">
+        <item>Expense Category 1</item>
+        <item>Expense Category 2</item>
+        <item>Expense Category 3</item>
+        <item>Expense Category 4</item>
+    </string-array>
+
 </resources>

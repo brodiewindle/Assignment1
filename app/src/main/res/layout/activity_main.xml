@@ -55,12 +55,11 @@
             app:layout_constraintTop_toBottomOf="@+id/add_new_income"
             android:inputType="number" />
 
-        <Button
-            android:id="@+id/income_category_text"
+        <Spinner
+            android:id="@+id/income_category_spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:text="@string/category"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/income_amount" />
 
@@ -73,7 +72,7 @@
             android:onClick="newIncomeClicked"
             android:text="@string/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/income_category_text" />
+            app:layout_constraintTop_toBottomOf="@id/income_category_spinner" />
 
 
         <TextView
@@ -100,14 +99,14 @@
             app:layout_constraintTop_toBottomOf="@+id/add_new_expense"
             android:inputType="number" />
 
-        <Button
-            android:id="@+id/expense_category_text"
+        <Spinner
+            android:id="@+id/expense_category_spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:text="@string/category"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expense_amount" />
+            app:layout_constraintTop_toBottomOf="@+id/expense_amount"/>
+
 
         <Button
             android:id="@+id/add_btn_expense"
@@ -118,7 +117,7 @@
             android:onClick="newExpenseClicked"
             android:text="@string/add_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expense_category_text" />
+            app:layout_constraintTop_toBottomOf="@id/expense_category_spinner" />
 
 
         <Button
@@ -129,10 +128,10 @@
             android:layout_marginTop="100dp"
             android:background="@color/blue"
             android:gravity="center"
-            android:onClick="newExpenseClicked"
+            android:onClick="seeDataClicked"
             android:text="@string/see_data"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expense_category_text" />
+            app:layout_constraintTop_toBottomOf="@+id/expense_category_spinner" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
