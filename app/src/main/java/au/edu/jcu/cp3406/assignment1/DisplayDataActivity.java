@@ -57,7 +57,28 @@ public class DisplayDataActivity extends AppCompatActivity {
             expenseCategoryText.setText(expenseCategoryInput);
             expenseAmountText.setText(expenseAmountInput);
         }
-        
+
+
+        // Add the incomes, expenses and provide total profit/loss statement
+
+        // Income
+        int incomeTotalSum = 0;
+        for (int i = 0; i < incomeAmounts.size(); i++) {
+            incomeTotalSum += incomeAmounts.get(i);
+        }
+
+        // Expenses
+        int expenseTotalSum = 0;
+        for (int i = 0; i < expenseAmounts.size(); i++) {
+            expenseTotalSum += expenseAmounts.get(i);
+        }
+
+        // Total
+        int totalProfitLoss = incomeTotalSum - expenseTotalSum;
+        TextView totalIncomeAmountText = findViewById(R.id.total_income_amount);
+        totalIncomeAmountText.setText(String.valueOf(totalProfitLoss));
+
+
     }
 
 }

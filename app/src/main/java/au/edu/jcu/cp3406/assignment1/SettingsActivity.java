@@ -11,13 +11,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class SettingsActivity extends AppCompatActivity {
 
     public static int SETTINGS_REQUEST = 3;
 
-    public String newIncomeCategory;
-    public String newExpenseCategory;
-
+    public ArrayList<String> newIncomeCategories = new ArrayList<>();
+    public ArrayList<String> newExpenseCategories = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,13 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public void newExpenseCategoryClicked(View view) {
+        String newExpenseCategory = "";
         EditText userInputExpense = findViewById(R.id.new_expense_category);
-        newExpenseCategory = userInputExpense.getText().toString();
+        if (userInputExpense.getText().toString().trim().length() > 0) {
+            newExpenseCategory = userInputExpense.getText().toString();
+            newExpenseCategories.add(newExpenseCategory);
+        }
+
         System.out.println(newExpenseCategory);
 
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
@@ -39,8 +45,14 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public void newIncomeCategoryClicked(View view) {
+        String newIncomeCategory = "";
         EditText userInputIncome = findViewById(R.id.new_income_category);
         newIncomeCategory = userInputIncome.getText().toString();
+        if (userInputIncome.getText().toString().trim().length() > 0) {
+            System.out.println(userInputIncome.getText().toString());
+            newIncomeCategory = userInputIncome.getText().toString();
+            newIncomeCategories.add(newIncomeCategory);
+        }
         System.out.println(newIncomeCategory);
 
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
@@ -57,10 +69,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void doneClicked(View view) {
         Intent intent = new Intent();
-        intent.putExtra("incomeCategory", newIncomeCategory);
-        intent.putExtra("expenseCategory", newExpenseCategory);
+        intent.putExtra("incomeCategory", newIncomeCategories);
+        intent.putExtra("expenseCategory", newExpenseCategories);
         intent.putExtras(intent);
-        setResult(RESULT_OK, intent);
+        setResult(RESULT_OK, intent);  // Send the information back to MainActivity
         finish();
     }
 

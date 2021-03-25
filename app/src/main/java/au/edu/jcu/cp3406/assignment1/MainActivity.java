@@ -11,13 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -34,15 +36,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayAdapter<String> incomeAdapter;
     ArrayAdapter<String> expenseAdapter;
 
+    SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences("SavedData", Context.MODE_PRIVATE);
+
         Toolbar mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
 
-        // Make income spinner
+        // Make income spinner with adapter to dynamically change it
         incomeSpinner = findViewById(R.id.income_category_spinner);
         incomeCategories = new ArrayList<>();
         incomeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, incomeCategories);
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         incomeSpinner.setAdapter(incomeAdapter);
         incomeSpinner.setOnItemSelectedListener(this);
 
-        // Make expense spinner
+        // Make expense spinner with adapter to dynamically change it
         expenseSpinner = findViewById(R.id.expense_category_spinner);
         expenseCategories = new ArrayList<>();
         expenseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, expenseCategories);
@@ -58,13 +65,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         expenseSpinner.setAdapter(expenseAdapter);
         expenseSpinner.setOnItemSelectedListener(this);
 
+
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+//        System.out.println("In onSavedInstanceState");
+//        outState.putStringArrayList("incomeCategories", incomeCategories);
+//        outState.putStringArrayList("expenseCategories", expenseCategories);
+//        outState.putIntegerArrayList("incomeAmounts", incomeAmounts);
+//        outState.putIntegerArrayList("expenseAmounts", expenseAmounts);
         super.onSaveInstanceState(outState);
-
     }
+
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        ArrayList<String> incomeCategories = savedInstanceState.getStringArrayList("incomeCategories");
+//    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -98,27 +116,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void newExpenseClicked(View view) {
         EditText userInputExpense = findViewById(R.id.expense_amount);
         String newExpenseAmount = userInputExpense.getText().toString();
-        System.out.println(newExpenseAmount);
         int expenseAmount = Integer.parseInt(newExpenseAmount);
 
         // Update the new expense total
         totalExpense = totalExpense + expenseAmount;
 
-        // get the category it has been entered into
-        // assign the new value into the correct position
-        // update the array
         String expenseCategorySelected = expenseSpinner.getSelectedItem().toString();
         int index = expenseCategories.indexOf(expenseCategorySelected);
         expenseAmounts.add(index, totalExpense);
-
         userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+        sendToast("New Expense Entry Added!");
     }
 
     // Add a new income entry
     public void newIncomeClicked(View view) {
         EditText userInputIncome = findViewById(R.id.income_amount);
         String newIncomeAmount = userInputIncome.getText().toString();
-        System.out.println(newIncomeAmount);
         int incomeAmount = Integer.parseInt(newIncomeAmount);
 
         // Update the new income total
@@ -127,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String incomeCategorySelected = incomeSpinner.getSelectedItem().toString();
         int index = incomeCategories.indexOf(incomeCategorySelected);
         incomeAmounts.add(index, totalIncome);
-
         userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+        sendToast("New Income Entry Added!");
     }
 
 
@@ -139,12 +152,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void seeDataClicked(View view) {
 
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Convert to sets
+//        Set<String> incomeCategorySet = incomeCategories.
+//
+//        editor.putStringSet("incomeCategory", incomeCategories);
+
+
         Intent dataIntent = new Intent(this, DisplayDataActivity.class);
         dataIntent.putStringArrayListExtra("incomeCategory", incomeCategories);
         dataIntent.putStringArrayListExtra("expenseCategory", expenseCategories);
         dataIntent.putIntegerArrayListExtra("incomeAmount", incomeAmounts);
         dataIntent.putIntegerArrayListExtra("expenseAmount", expenseAmounts);
-        startActivityForResult(dataIntent, DisplayDataActivity.DATA_REQUEST);
+        startActivity(dataIntent);
     }
 
     @Override
@@ -154,22 +175,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // If statements for each activity
         if (requestCode == SettingsActivity.SETTINGS_REQUEST) {
             if (resultCode == RESULT_OK & data != null) {
-                System.out.println("From settings in MainActivity");
-                String newIncomeCategory = data.getStringExtra("incomeCategory");
-                String newExpenseCategory = data.getStringExtra("expenseCategory");
+                ArrayList<String> newIncomeCategory = data.getStringArrayListExtra("incomeCategory");
+                ArrayList<String> newExpenseCategory = data.getStringArrayListExtra("expenseCategory");
 
-                incomeCategories.add(newIncomeCategory);
+                incomeCategories.addAll(newIncomeCategory);
                 incomeAmounts.add(0);
                 incomeAdapter.notifyDataSetChanged();
 
-                expenseCategories.add(newExpenseCategory);
+                expenseCategories.addAll(newExpenseCategory);
                 expenseAmounts.add(0);
                 expenseAdapter.notifyDataSetChanged();
-
-            }
-        } else if (requestCode == DisplayDataActivity.DATA_REQUEST) {
-            if (resultCode == RESULT_OK & data != null) {
-                System.out.println("Sugmaaa");
             }
         }
     }
