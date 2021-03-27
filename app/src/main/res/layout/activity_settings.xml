@@ -63,8 +63,7 @@
             android:textSize="20sp"
             android:textColor="@color/blue"
             android:textStyle="bold"
-            android:text="@string/add_new_expense_category"
-            />
+            android:text="@string/add_new_expense_category" />
 
         <EditText
             android:layout_width="match_parent"
@@ -93,9 +92,5 @@
             android:layout_marginTop="40dp"
             android:text="@string/done_button"
             android:onClick="doneClicked"/>
-
-
     </LinearLayout>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

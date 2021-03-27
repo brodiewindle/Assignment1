@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_grey">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +18,11 @@
             app:title="@string/data_activity_title"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:padding="16dp">
-
 
         <TextView
             android:id="@+id/income_categories_text"
@@ -69,8 +66,7 @@
             android:textColor="@color/blue"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/income_amount_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/income_amount_text" />
 
         <TextView
             android:id="@+id/expense_categories_text"
@@ -82,8 +78,7 @@
             android:ellipsize="end"
             android:singleLine="false"
             app:layout_constraintTop_toBottomOf="@+id/total_income_text"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/expense_amount_text"
@@ -115,8 +110,7 @@
             android:textColor="@color/blue"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expense_amount_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/expense_amount_text" />
 
         <TextView
             android:id="@+id/total_profit_loss_text"
@@ -127,8 +121,7 @@
             android:textStyle="bold"
             android:textColor="@color/blue"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/total_expense_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/total_expense_text" />
 
         <TextView
             android:id="@+id/total_profit_loss_amount"
@@ -139,13 +132,6 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/total_expense_amount"
-            />
-
-
-
+            app:layout_constraintTop_toBottomOf="@id/total_expense_amount" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

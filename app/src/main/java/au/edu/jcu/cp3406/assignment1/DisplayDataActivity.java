@@ -133,6 +133,5 @@ public class DisplayDataActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 }

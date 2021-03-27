@@ -37,10 +37,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar mToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
-
 
         if (savedInstanceState != null) {
             expenseCategories = savedInstanceState.getStringArrayList("expenseCategories");
@@ -112,17 +110,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             // Update the new expense total
             totalExpense = totalExpense + expenseAmount;
 
-            String expenseCategorySelected = expenseSpinner.getSelectedItem().toString();
-            int index = expenseCategories.indexOf(expenseCategorySelected);
+            if (expenseSpinner.getSelectedItem() != null) {
+                String expenseCategorySelected = expenseSpinner.getSelectedItem().toString();
+                int index = expenseCategories.indexOf(expenseCategorySelected);
 
-            if (index >= expenseAmounts.size()) {
-                expenseAmounts.add(index, expenseAmount);
-            } else {
-                int lastValue = expenseAmounts.get(index);
-                expenseAmounts.set(index, lastValue + expenseAmount);
+                if (index >= expenseAmounts.size()) {
+                    expenseAmounts.add(index, expenseAmount);
+                } else {
+                    int lastValue = expenseAmounts.get(index);
+                    expenseAmounts.set(index, lastValue + expenseAmount);
+                }
+                userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+                sendToast("New Expense Entry Added!");
             }
-            userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
-            sendToast("New Expense Entry Added!");
         }
     }
 
@@ -138,17 +138,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             // Update the new income total
             totalIncome = totalIncome + incomeAmount;
 
-            String incomeCategorySelected = incomeSpinner.getSelectedItem().toString();
-            int index = incomeCategories.indexOf(incomeCategorySelected);
+            if (incomeSpinner.getSelectedItem() != null) {
+                String incomeCategorySelected = incomeSpinner.getSelectedItem().toString();
+                int index = incomeCategories.indexOf(incomeCategorySelected);
 
-            if (index >= incomeAmounts.size()) {
-                incomeAmounts.add(index, incomeAmount);
-            } else {
-                int lastValue = incomeAmounts.get(index);
-                incomeAmounts.set(index, lastValue + incomeAmount);
+                if (index >= incomeAmounts.size()) {
+                    incomeAmounts.add(index, incomeAmount);
+                } else {
+                    int lastValue = incomeAmounts.get(index);
+                    incomeAmounts.set(index, lastValue + incomeAmount);
+                }
+                userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+                sendToast("New Income Entry Added!");
             }
-            userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
-            sendToast("New Income Entry Added!");
         }
     }
 
