@@ -49,13 +49,14 @@
             android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toTopOf="@+id/income_categories_text" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/total_income_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Income"
+            android:text="@string/total_income"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/income_categories_text" />
 
@@ -63,6 +64,7 @@
             android:id="@+id/total_income_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/income_amount_text"
@@ -77,7 +79,7 @@
             android:maxLines="10"
             android:ellipsize="end"
             android:singleLine="false"
-            app:layout_constraintTop_toBottomOf="@+id/income_categories_text"
+            app:layout_constraintTop_toBottomOf="@+id/total_income_text"
             app:layout_constraintStart_toStartOf="parent"
             />
 
@@ -91,7 +93,49 @@
             android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toTopOf="@+id/expense_categories_text" />
+            app:layout_constraintTop_toBottomOf="@+id/total_income_amount" />
+
+        <TextView
+            android:id="@+id/total_expense_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/total_expenses"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expense_categories_text" />
+
+        <TextView
+            android:id="@+id/total_expense_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expense_amount_text"
+            />
+
+        <TextView
+            android:id="@+id/total_profit_loss_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/total_profit_loss"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_expense_text"
+            />
+
+        <TextView
+            android:id="@+id/total_profit_loss_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_expense_amount"
+            />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

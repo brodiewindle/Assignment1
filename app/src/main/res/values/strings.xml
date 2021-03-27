@@ -14,19 +14,10 @@
     <string name="category">Category</string>
     <string name="see_data">See Data</string>
     <string name="data_activity_title">Data</string>
+    <string name="total_income">Total Income</string>
+    <string name="total_expenses">Total Expenses</string>
+    <string name="total_profit_loss">Total Profit/Loss</string>
+    <string name="dollars_sign">$</string>
 
-    <string-array name="income_categories">
-        <item>Income Category 1</item>
-        <item>Income Category 2</item>
-        <item>Income Category 3</item>
-        <item>Income Category 4</item>
-    </string-array>
-
-    <string-array name="expense_categories">
-        <item>Expense Category 1</item>
-        <item>Expense Category 2</item>
-        <item>Expense Category 3</item>
-        <item>Expense Category 4</item>
-    </string-array>
 
 </resources>

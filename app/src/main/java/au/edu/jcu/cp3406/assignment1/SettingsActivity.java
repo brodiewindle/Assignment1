@@ -27,38 +27,32 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    public void newIncomeCategoryClicked(View view) {
+        String newIncomeCategory = "";
+        EditText userInputIncome = findViewById(R.id.new_income_category);
+        if (userInputIncome.getText().toString().trim().length() > 0) {
+            newIncomeCategory = userInputIncome.getText().toString();
+            newIncomeCategories.add(newIncomeCategory);
+            userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+            sendToast("New Income Category Added!");
+        } else {
+            sendToast("Please enter a category");
+        }
+
+    }
+
+
     public void newExpenseCategoryClicked(View view) {
         String newExpenseCategory = "";
         EditText userInputExpense = findViewById(R.id.new_expense_category);
         if (userInputExpense.getText().toString().trim().length() > 0) {
             newExpenseCategory = userInputExpense.getText().toString();
             newExpenseCategories.add(newExpenseCategory);
+            userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
+            sendToast("New Expense Category Added!");
+        } else {
+            sendToast("Please enter a category");
         }
-
-        System.out.println(newExpenseCategory);
-
-        userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
-
-        // Toast Text
-       sendToast("New Expense Category Added!");
-    }
-
-
-    public void newIncomeCategoryClicked(View view) {
-        String newIncomeCategory = "";
-        EditText userInputIncome = findViewById(R.id.new_income_category);
-        newIncomeCategory = userInputIncome.getText().toString();
-        if (userInputIncome.getText().toString().trim().length() > 0) {
-            System.out.println(userInputIncome.getText().toString());
-            newIncomeCategory = userInputIncome.getText().toString();
-            newIncomeCategories.add(newIncomeCategory);
-        }
-        System.out.println(newIncomeCategory);
-
-        userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
-
-        // Toast text
-        sendToast("New Income Category Added!");
     }
 
 
