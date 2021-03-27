@@ -2,11 +2,8 @@ package au.edu.jcu.cp3406.assignment1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public void newIncomeCategoryClicked(View view) {
-        String newIncomeCategory = "";
+        String newIncomeCategory;
         EditText userInputIncome = findViewById(R.id.new_income_category);
         if (userInputIncome.getText().toString().trim().length() > 0) {
             newIncomeCategory = userInputIncome.getText().toString();
@@ -41,9 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-
     public void newExpenseCategoryClicked(View view) {
-        String newExpenseCategory = "";
+        String newExpenseCategory;
         EditText userInputExpense = findViewById(R.id.new_expense_category);
         if (userInputExpense.getText().toString().trim().length() > 0) {
             newExpenseCategory = userInputExpense.getText().toString();

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 
 public class DisplayDataActivity extends AppCompatActivity {
-    public static int DATA_REQUEST = 3;
-
     ArrayList<String> incomeCategories;
     ArrayList<String> expenseCategories;
 
@@ -49,37 +46,13 @@ public class DisplayDataActivity extends AppCompatActivity {
         ArrayList<Integer> incomeAmounts = intent.getIntegerArrayListExtra("incomeAmount");
         ArrayList<Integer> expenseAmounts = intent.getIntegerArrayListExtra("expenseAmount");
 
+        // Write categories and totals to the screen
+        writeIncomeData(incomeAmounts);
+        writeExpenseData(expenseAmounts);
+        writeTotalsData(incomeAmounts, expenseAmounts);
+    }
 
-        String incomeCategoryInput = "";
-        String incomeAmountInput = "";
-        incomeCategoryText = findViewById(R.id.income_categories_text);
-        incomeAmountText = findViewById(R.id.income_amount_text);
-        if (incomeAmounts.isEmpty()) {
-            sendToast("No Income Entry");
-        } else {
-            for (int i = 0; i < incomeCategories.size(); i++) {
-                incomeCategoryInput = incomeCategoryInput + "\n" + StringUtils.capitalize(incomeCategories.get(i));
-                incomeAmountInput = incomeAmountInput + "\n" + "$" + incomeAmounts.get(i);
-                incomeCategoryText.setText(incomeCategoryInput);
-                incomeAmountText.setText(incomeAmountInput);
-            }
-        }
-
-        String expenseCategoryInput = "";
-        String expenseAmountInput = "";
-        expenseCategoryText = findViewById(R.id.expense_categories_text);
-        expenseAmountText = findViewById(R.id.expense_amount_text);
-        if (expenseAmounts.isEmpty()) {
-            sendToast("No Expense Entry");
-        } else {
-            for (int i = 0; i < expenseCategories.size(); i++) {
-                expenseCategoryInput = expenseCategoryInput + "\n" + StringUtils.capitalize(expenseCategories.get(i));
-                expenseAmountInput = expenseAmountInput + "\n" + "$" + expenseAmounts.get(i);
-                expenseCategoryText.setText(expenseCategoryInput);
-                expenseAmountText.setText(expenseAmountInput);
-            }
-        }
-
+    private void writeTotalsData(ArrayList<Integer> incomeAmounts, ArrayList<Integer> expenseAmounts) {
         // Income
         int incomeTotalSum = 0;
         for (int i = 0; i < incomeAmounts.size(); i++) {
@@ -105,6 +78,40 @@ public class DisplayDataActivity extends AppCompatActivity {
         totalProLosAmountText.setText(profitLossInput);
     }
 
+    private void writeExpenseData(ArrayList<Integer> expenseAmounts) {
+        String expenseCategoryInput = "";
+        String expenseAmountInput = "";
+        expenseCategoryText = findViewById(R.id.expense_categories_text);
+        expenseAmountText = findViewById(R.id.expense_amount_text);
+        if (expenseAmounts.isEmpty()) {
+            sendToast("No Expense Entry");
+        } else {
+            for (int i = 0; i < expenseCategories.size(); i++) {
+                expenseCategoryInput = expenseCategoryInput + "\n" + StringUtils.capitalize(expenseCategories.get(i));
+                expenseAmountInput = expenseAmountInput + "\n" + "$" + expenseAmounts.get(i);
+                expenseCategoryText.setText(expenseCategoryInput);
+                expenseAmountText.setText(expenseAmountInput);
+            }
+        }
+    }
+
+    private void writeIncomeData(ArrayList<Integer> incomeAmounts) {
+        String incomeCategoryInput = "";
+        String incomeAmountInput = "";
+        incomeCategoryText = findViewById(R.id.income_categories_text);
+        incomeAmountText = findViewById(R.id.income_amount_text);
+        if (incomeAmounts.isEmpty()) {
+            sendToast("No Income Entry");
+        } else {
+            for (int i = 0; i < incomeCategories.size(); i++) {
+                incomeCategoryInput = incomeCategoryInput + "\n" + StringUtils.capitalize(incomeCategories.get(i));
+                incomeAmountInput = incomeAmountInput + "\n" + "$" + incomeAmounts.get(i);
+                incomeCategoryText.setText(incomeCategoryInput);
+                incomeAmountText.setText(incomeAmountInput);
+            }
+        }
+    }
+
     @Override
     public void onBackPressed() {
         setResult(Activity.RESULT_OK);
@@ -116,8 +123,6 @@ public class DisplayDataActivity extends AppCompatActivity {
         toast.show();
     }
 
-
-
     /**
      * This function is required as the back button in the ActionBar will always return null for
      */
@@ -127,17 +132,6 @@ public class DisplayDataActivity extends AppCompatActivity {
             this.finish();
             return true;
         }
-//
-//        Intent dataIntent = new Intent(this, DisplayDataActivity.class);
-//        dataIntent.putStringArrayListExtra("incomeCategory", incomeCategories);
-//        dataIntent.putStringArrayListExtra("expenseCategory", expenseCategories);
-//        dataIntent.putIntegerArrayListExtra("incomeAmount", incomeAmounts);
-//        dataIntent.putIntegerArrayListExtra("expenseAmount", expenseAmounts);
-//        dataIntent.putExtras(dataIntent);
-//        setResult(RESULT_OK, dataIntent);  // Send the information back to MainActivity
-//
-
-
         return super.onOptionsItemSelected(item);
 
     }

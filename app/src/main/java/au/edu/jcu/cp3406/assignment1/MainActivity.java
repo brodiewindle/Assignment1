@@ -11,18 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
     private int totalIncome;
     private int totalExpense;
 
@@ -35,9 +32,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner expenseSpinner;
     ArrayAdapter<String> incomeAdapter;
     ArrayAdapter<String> expenseAdapter;
-
-    SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +63,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         expenseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         expenseSpinner.setAdapter(expenseAdapter);
         expenseSpinner.setOnItemSelectedListener(this);
-
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        System.out.println("In onSavedInstanceState");
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putStringArrayList("incomeCategories", incomeCategories);
         savedInstanceState.putStringArrayList("expenseCategories", expenseCategories);
         savedInstanceState.putIntegerArrayList("incomeAmounts", incomeAmounts);
         savedInstanceState.putIntegerArrayList("expenseAmounts", expenseAmounts);
-
     }
 
     @Override
@@ -93,29 +84,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        System.out.println("Menu Created");
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Here, a switch case can be made if there are multiple menu items
-        // We only have one, so we can just handle it
-        System.out.println("Settings Pressed");
+        // We only have one (the settings button), so we can just handle it
         return super.onOptionsItemSelected(item);
     }
 
     public void settingsClicked(MenuItem item) {
         Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        // forResult as we want to return the new categories that are added
         startActivityForResult(settingsIntent, SettingsActivity.SETTINGS_REQUEST);
     }
-
 
     // Add a new expense entry
     public void newExpenseClicked(View view) {
         EditText userInputExpense = findViewById(R.id.expense_amount);
         String newExpenseAmount = userInputExpense.getText().toString();
-        int expenseAmount = 0;
+        int expenseAmount;
         if (newExpenseAmount.isEmpty()) {
             sendToast("Please enter a valid quantity");
         } else {
@@ -130,22 +119,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 expenseAmounts.add(index, expenseAmount);
             } else {
                 int lastValue = expenseAmounts.get(index);
-                System.out.println(lastValue + expenseAmount);
                 expenseAmounts.set(index, lastValue + expenseAmount);
             }
-
             userInputExpense.getText().clear();  // Clear the EditText when the 'Add' button is pressed
             sendToast("New Expense Entry Added!");
         }
-
-
     }
 
     // Add a new income entry
     public void newIncomeClicked(View view) {
         EditText userInputIncome = findViewById(R.id.income_amount);
         String newIncomeAmount = userInputIncome.getText().toString();
-        int incomeAmount = 0;
+        int incomeAmount;
         if (newIncomeAmount.isEmpty()) {
             sendToast("Please enter a valid quantity");
         } else {
@@ -160,15 +145,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 incomeAmounts.add(index, incomeAmount);
             } else {
                 int lastValue = incomeAmounts.get(index);
-                System.out.println(lastValue + incomeAmount);
                 incomeAmounts.set(index, lastValue + incomeAmount);
             }
-
             userInputIncome.getText().clear();  // Clear the EditText when the 'Add' button is pressed
             sendToast("New Income Entry Added!");
         }
-
-
     }
 
     private void sendToast(String message) {
@@ -177,12 +158,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void seeDataClicked(View view) {
-        Intent dataIntent = new Intent(this, DisplayDataActivity.class);
+        Intent dataIntent = new Intent(this, DisplayDataActivity.class); // Create intent in order to send data
         dataIntent.putStringArrayListExtra("incomeCategory", incomeCategories);
         dataIntent.putStringArrayListExtra("expenseCategory", expenseCategories);
         dataIntent.putIntegerArrayListExtra("incomeAmount", incomeAmounts);
         dataIntent.putIntegerArrayListExtra("expenseAmount", expenseAmounts);
-        startActivityForResult(dataIntent, DisplayDataActivity.DATA_REQUEST);
+        // We don't return anything from this activity, therefore there is no need for 'forResult'
+        startActivity(dataIntent);
     }
 
     @Override
@@ -201,11 +183,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 expenseAmounts.add(0);  // Set the original value for it to zero
                 expenseAdapter.notifyDataSetChanged();
             }
-        } else {
-            if (resultCode == RESULT_OK & data != null) { {
-                ArrayList<String> dataIncomeCategory = data.getStringArrayListExtra("incomeCategory");
-                ArrayList<String> dataExpenseCategory = data.getStringArrayListExtra("expenseCategory");
-            }}
         }
     }
 
